@@ -18,12 +18,12 @@ savings = []
 st.write("Please enter your decided total budget for each category:")
 
 for i in categories:
-    budget[i] = st.number_input(f"{i} in rupees", min_value=0.0, step=100.0)
+    budget[i] = st.number_input(f"{i} in rupees", min_value=0.0, step=100.0, key=f"budget_{i}")
 
 st.write("Please enter your total spending for each category:")
 
 for j in categories:
-    spending[j] = st.number_input(f"{j} in rupees", min_value=0.0, step=100.0)
+    spending[j] = st.number_input(f"{j} in rupees", min_value=0.0, step=100.0, key=f"spending_{j}")
 
 # Calculating the total budget and total spending
 total_budget = sum(budget.values())
