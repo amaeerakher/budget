@@ -1,37 +1,37 @@
 import streamlit as st
 
-# Display the welcome message
+#This is the welcome message
 st.title("Welcome to your Travel Budget Tracker!")
 st.write("******")
 
-# Categories defines all the things we are tracking within the planner
+#Categories defines all the things we are tracking within the planner
 categories = ["Travel expenses", "Accommodation expenses", "Excursion expenses", "Food expenses", "Miscellaneous"]
 
-# Dictionaries to hold each of the amounts, and lists to track overspending or savings categories
+#Dictionaries hold each of the amounts and the lists will hold the category names where overspending or saving is seen
 budget = {}
 spending = {}
 saving = {}
 overspending = []
 savings = []
 
-# Collect budget inputs from the user
+#The amounts are being stored for each category in the dictionary
 st.write("Please enter your decided total budget for each category:")
 
 for i in categories:
-    budget[i] = st.number_input(i + " in rupees", key=i + " budget")
+    budget[i] = st.number_input(i + " in rupees", key=i + " budget")   #This stores each total value of spending
 
 st.write("Please enter your total spending for each category:")
 
 for j in categories:
-    spending[j] = st.number_input(j + " in rupees", key=j + " spending")
+    spending[j] = st.number_input(j + " in rupees", key=j + " spending")  #This stores each total value of spending
 
-# Calculating the total budget and total spending
+#Each sum of budget, spending, savings and over spending according to category is saved here respectively
 total_budget = sum(budget.values())
 total_spending = sum(spending.values())
 total_savings = 0
 total_overspending = 0
 
-# Displaying the comparison of budgets and spendings for each category
+#Here we compare the budgets with the spending
 st.write("******")
 st.write("Here is a comparison of your budget and spendings for each category:")
 
@@ -41,7 +41,7 @@ for category in budget:
     st.write("Budgeted: Rs. " + str(budget[category]))
     st.write("Spent: Rs. " + str(spending[category]))
 
-    # Checking if there's overspending or savings
+    #This if-elif-else statement is helping us determine and print if the user has spent extra in the category or not
     if difference > 0:
         total_overspending += difference
         st.write("You have spent Rs. " + str(difference) + " extra on " + category + ".")
@@ -64,7 +64,7 @@ st.write("Your total savings across categories was: Rs. " + str(total_savings))
 st.write("Your total budget was: Rs. " + str(total_budget))
 st.write("Total spending was: Rs. " + str(total_spending))
 
-# Providing feedback based on the overall spending vs. budget
+#This gives us the money saved or extra spent
 total_difference = total_spending - total_budget
 if total_difference > 0:
     st.write("You have gone over your total budget of Rs. " + str(total_budget) + " by Rs. " + str(total_difference) + ".")
